@@ -169,7 +169,10 @@ const TechnologyStack: React.FC = () => {
       >
         <div className="text-center">
           <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${getColorClasses(technologies[activeCategory as keyof typeof technologies].color)} mb-4`}>
-            <technologies[activeCategory as keyof typeof technologies].icon className="h-6 w-6" />
+            {(() => {
+              const IconComponent = technologies[activeCategory as keyof typeof technologies].icon
+              return <IconComponent className="h-6 w-6" />
+            })()}
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">
             {technologies[activeCategory as keyof typeof technologies].title}
