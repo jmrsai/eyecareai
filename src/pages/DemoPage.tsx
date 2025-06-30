@@ -373,19 +373,20 @@ const DemoPage: React.FC = () => {
               <div className="card p-6 sticky top-24">
                 {(() => {
                   const currentSection = demoSections.find(s => s.id === activeDemo)
+                  const IconComponent = currentSection?.icon
                   return (
                     <>
                       <div className="flex items-center space-x-3 mb-4">
                         <div className="p-2 bg-primary-100 rounded-lg">
-                          <currentSection!.icon className="h-6 w-6 text-primary-600" />
+                          {IconComponent && <IconComponent className="h-6 w-6 text-primary-600" />}
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900">{currentSection!.title}</h3>
+                        <h3 className="text-xl font-semibold text-gray-900">{currentSection?.title}</h3>
                       </div>
-                      <p className="text-gray-600 mb-6">{currentSection!.description}</p>
+                      <p className="text-gray-600 mb-6">{currentSection?.description}</p>
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3">Key Features</h4>
                         <ul className="space-y-2">
-                          {currentSection!.features.map((feature, index) => (
+                          {currentSection?.features.map((feature, index) => (
                             <li key={index} className="flex items-start space-x-2">
                               <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                               <span className="text-sm text-gray-700">{feature}</span>
