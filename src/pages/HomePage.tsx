@@ -12,8 +12,11 @@ import {
   CheckCircle,
   Zap,
   Globe,
-  Award
+  Award,
+  Play,
+  Star
 } from 'lucide-react'
+import TestimonialCarousel from '../components/TestimonialCarousel'
 
 const HomePage: React.FC = () => {
   const features = [
@@ -61,20 +64,46 @@ const HomePage: React.FC = () => {
       phase: 'Phase 1',
       title: 'Core Clinical Module',
       description: 'EMR templating, imaging integration, surgical planning',
-      status: 'In Development'
+      status: 'In Development',
+      progress: 75
     },
     {
       phase: 'Phase 2',
       title: 'Administrative Module',
       description: 'Practice management, billing, patient portal',
-      status: 'Planning'
+      status: 'Planning',
+      progress: 25
     },
     {
       phase: 'Phase 3',
       title: 'AI & Analytics',
       description: 'AI diagnostics, EyeGPT, surgical video analysis',
-      status: 'Research'
+      status: 'Research',
+      progress: 10
     },
+  ]
+
+  const benefits = [
+    {
+      icon: CheckCircle,
+      title: '60% Faster Documentation',
+      description: 'Voice dictation and AI-powered templates reduce documentation time significantly'
+    },
+    {
+      icon: Brain,
+      title: '40% Improved Accuracy',
+      description: 'AI diagnostic tools enhance detection accuracy for retinal diseases'
+    },
+    {
+      icon: Users,
+      title: '35% Better Patient Satisfaction',
+      description: 'Multi-language portal and telemedicine improve patient experience'
+    },
+    {
+      icon: Shield,
+      title: '100% Compliance Ready',
+      description: 'Full ABDM, NABH, and DPDP Act 2023 compliance from day one'
+    }
   ]
 
   return (
@@ -88,6 +117,11 @@ const HomePage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
+              <div className="inline-flex items-center space-x-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Star className="h-4 w-4" />
+                <span>India's First AI-Powered Ophthalmology EMR</span>
+              </div>
+              
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                 Next-Generation
                 <span className="text-gradient block">Ophthalmology EMR</span>
@@ -97,9 +131,10 @@ const HomePage: React.FC = () => {
                 designed specifically for the Indian healthcare ecosystem with ABDM and NABH compliance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/demo" className="btn-primary">
+                <Link to="/demo" className="btn-primary group">
+                  <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                   View Live Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link to="/project-plan" className="btn-secondary">
                   Explore Project Plan
@@ -123,13 +158,56 @@ const HomePage: React.FC = () => {
                 className="text-center"
               >
                 <div className="flex justify-center mb-3">
-                  <stat.icon className="h-8 w-8 text-primary-600" />
+                  <div className="bg-primary-100 text-primary-600 w-12 h-12 rounded-full flex items-center justify-center">
+                    <stat.icon className="h-6 w-6" />
+                  </div>
                 </div>
                 <div className="text-3xl font-bold text-gray-900 mb-1">{stat.number}</div>
                 <div className="text-sm text-gray-600">{stat.label}</div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="section-padding bg-white">
+        <div className="container-max">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Proven Results for <span className="text-gradient">Healthcare Excellence</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Join hundreds of ophthalmologists who have transformed their practice with Project Iris
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="bg-primary-100 text-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="h-8 w-8" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+                <p className="text-gray-600 text-sm">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Testimonials */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <TestimonialCarousel />
+          </motion.div>
         </div>
       </section>
 
@@ -153,10 +231,10 @@ const HomePage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card p-6 hover:scale-105 transition-transform"
+                className="card p-6 hover:scale-105 transition-transform group"
               >
                 <div className="flex items-center mb-4">
-                  <div className="p-3 bg-primary-100 rounded-lg mr-4">
+                  <div className="p-3 bg-primary-100 rounded-lg mr-4 group-hover:bg-primary-200 transition-colors">
                     <feature.icon className="h-6 w-6 text-primary-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
@@ -205,7 +283,23 @@ const HomePage: React.FC = () => {
                   </span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{phase.title}</h3>
-                <p className="text-gray-600">{phase.description}</p>
+                <p className="text-gray-600 mb-4">{phase.description}</p>
+                
+                {/* Progress Bar */}
+                <div className="mb-2">
+                  <div className="flex justify-between text-sm text-gray-600 mb-1">
+                    <span>Progress</span>
+                    <span>{phase.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${phase.progress}%` }}
+                      transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
+                      className="bg-primary-600 h-2 rounded-full"
+                    />
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -231,7 +325,8 @@ const HomePage: React.FC = () => {
               of AI-driven healthcare technology designed for Indian medical practices.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/demo" className="bg-white text-primary-600 hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition-colors">
+              <Link to="/demo" className="bg-white text-primary-600 hover:bg-gray-100 font-medium py-3 px-8 rounded-lg transition-colors inline-flex items-center justify-center">
+                <Play className="mr-2 h-5 w-5" />
                 Schedule a Demo
               </Link>
               <Link to="/features" className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-medium py-3 px-8 rounded-lg transition-colors">

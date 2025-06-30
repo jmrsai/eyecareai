@@ -18,6 +18,10 @@ import {
   Lock,
   Award
 } from 'lucide-react'
+import InteractiveFeatureDemo from '../components/InteractiveFeatureDemo'
+import FeatureComparison from '../components/FeatureComparison'
+import TechnologyStack from '../components/TechnologyStack'
+import ROICalculator from '../components/ROICalculator'
 
 const FeaturesPage: React.FC = () => {
   const featureCategories = [
@@ -183,6 +187,24 @@ const FeaturesPage: React.FC = () => {
     }
   ]
 
+  const interactiveDemos = [
+    {
+      feature: 'ai-diagnostics',
+      title: 'AI Diagnostic Assistant',
+      description: 'Experience real-time retinal image analysis with our AI-powered diagnostic tools'
+    },
+    {
+      feature: 'voice-dictation',
+      title: 'Voice-to-Text Dictation',
+      description: 'See how voice dictation works with medical terminology and Indian accents'
+    },
+    {
+      feature: 'surgical-planning',
+      title: 'Surgical Planning Tools',
+      description: 'Interactive IOL power calculation with advanced formulas'
+    }
+  ]
+
   const getColorClasses = (color: string) => {
     const colors = {
       primary: 'bg-primary-100 text-primary-600 border-primary-200',
@@ -214,8 +236,40 @@ const FeaturesPage: React.FC = () => {
             </p>
           </motion.div>
 
+          {/* Interactive Demos */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-20"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Interactive Demonstrations</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Experience our key features through interactive demonstrations
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {interactiveDemos.map((demo, index) => (
+                <motion.div
+                  key={demo.feature}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
+                >
+                  <InteractiveFeatureDemo
+                    feature={demo.feature}
+                    title={demo.title}
+                    description={demo.description}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
           {/* Feature Categories */}
-          <div className="space-y-16">
+          <div className="space-y-16 mb-20">
             {featureCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
@@ -266,45 +320,33 @@ const FeaturesPage: React.FC = () => {
             ))}
           </div>
 
-          {/* Technology Stack */}
+          {/* Feature Comparison */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-20"
+            className="mb-20"
           >
-            <div className="card p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Technology Stack</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Frontend Technologies</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li>• React with TypeScript</li>
-                    <li>• Modern responsive design</li>
-                    <li>• Progressive Web App (PWA)</li>
-                    <li>• Real-time updates</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Backend & AI</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li>• Cloud-native architecture</li>
-                    <li>• AI/ML model integration</li>
-                    <li>• FHIR-compliant APIs</li>
-                    <li>• Microservices design</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Security & Compliance</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li>• End-to-end encryption</li>
-                    <li>• RBAC with MFA</li>
-                    <li>• ABDM & NABH compliance</li>
-                    <li>• DPDP Act 2023 ready</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <FeatureComparison />
+          </motion.div>
+
+          {/* ROI Calculator */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="mb-20"
+          >
+            <ROICalculator />
+          </motion.div>
+
+          {/* Technology Stack */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <TechnologyStack />
           </motion.div>
         </div>
       </section>
