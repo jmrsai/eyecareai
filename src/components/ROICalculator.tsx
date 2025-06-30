@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Calculator, 
@@ -54,11 +54,11 @@ const ROICalculator: React.FC = () => {
     })
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     calculateROI()
   }, [inputs])
 
-  const handleInputChange = (field: string, value: number) => {
+  const handleInputChange = (field: keyof typeof inputs, value: number) => {
     setInputs(prev => ({ ...prev, [field]: value }))
   }
 
