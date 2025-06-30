@@ -1,5 +1,5 @@
 import React from 'react'
-import { Eye, Mail, Phone, MapPin } from 'lucide-react'
+import { Eye, Mail } from 'lucide-react'
 
 const Footer: React.FC = () => {
   return (
