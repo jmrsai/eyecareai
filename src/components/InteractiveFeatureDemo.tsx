@@ -5,15 +5,9 @@ import {
   Pause, 
   RotateCcw, 
   Eye, 
-  Brain, 
-  Camera,
   Activity,
   Mic,
-  MicOff,
-  Volume2,
-  VolumeX,
-  Maximize2,
-  Minimize2
+  MicOff
 } from 'lucide-react'
 
 interface InteractiveFeatureDemoProps {
